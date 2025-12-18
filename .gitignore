@@ -1,0 +1,10 @@
+# dbt build artifacts
+target/
+dbt_packages/
+logs/
+log/
+
+# credentials / local config
+profiles.yml
+**/profiles.yml
+.env
