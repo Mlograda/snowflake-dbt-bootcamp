@@ -1,0 +1,15 @@
+snapshots: 
+  - name: scd_raw_listings
+    relation: source('airbnb', 'listings')
+    config: 
+      unique_key: id
+      updated_at: updated_at
+      strategy: timestamp
+      hard_deletes: invalidate # "invalidate" means when a record is deleted, you want to take a look at
+      # the snapshot records and update the end columns so that you see that the life cycle of this 
+      # column has been completed , if "new_record" is used then the snapshot table would have an extra column  which
+      # is called db_is_deleted , and when an original record is deleted, that flag wil be flipped to true
+
+
+# what is there is no change in the data but someone deletes a record from the data , how can the snapshot 
+# engine pick up this change? --> use configuration variabel for that called hard_delectes
